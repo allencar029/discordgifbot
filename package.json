@@ -14,7 +14,9 @@
   "description": "",
   "dependencies": {
     "discord.js": "^14.18.0",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
     "dotenv": "^16.4.7",
