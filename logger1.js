@@ -3,14 +3,15 @@ import DailyRotateFile from 'winston-daily-rotate-file'
 const { combine, timestamp, printf, json } = format //destructuring format
 
 
-const logFormat = printf(({ level, message, timestamp, meta }) => {
+const logFormat = printf(({ level, message, timestamp, meta, error }) => { //here we take the variables and format them so that they are easier to process and analyze by log management tools such as AWS CloudWatch 
     return JSON.stringify({
         timestamp,
         level,
         message,
+        error,
         ...(meta ? { meta } : {})  // Optionally include additional metadata
-    });
-});
+    })
+})
 
 
 const logger = createLogger({
@@ -18,17 +19,11 @@ const logger = createLogger({
     format: combine(
         timestamp({
         format: 'YYYY-MM-DD HH:mm:ss'
-        }), 
-        json()
+        })
     ),
     transports: [
         new transports.Console({
             level: 'info',  
-            format: combine(logFormat)
-        }),
-
-        new transports.Console({
-            level: 'error',
             format: combine(logFormat)
         }),
 
