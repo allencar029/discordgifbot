@@ -7,13 +7,16 @@ import logger from "./logger1.js"
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent
+        GatewayIntentBits.GuildMessages, //permission for sending messages
+        GatewayIntentBits.MessageContent //permission for accessing message content 
     ]
-})
+}) //discord expects you to give permissions to the client bot. 
 
+//below is an event listener, the client listens for the ready event 
+//node.js uses an event driven architecture, making it possible for code to be executed when a specific even occurs
+// the client class for discord already has a bunch of events associated with it so all you have to do is type in a string instead of having a
+// individual event file and dynamically retrieving that even file and its functionality in your index file. 
 client.on("ready", () => {
-    // console.log(`Logged in as ${client.user.tag}!`)
     logger.info(`Logged in as ${client.user.tag}!`)
     client.emit('error', new Error('Simulated error for testing.'))
 
@@ -31,7 +34,6 @@ client.on("messageCreate", async (message) => {
             message.reply(`${messageReply}`)
             logger.info(`replying with ${messageReply}`)
         }
-
 
         let splitMessage = message.content.split(" ")
 

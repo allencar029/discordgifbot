@@ -19,12 +19,12 @@ const logger = createLogger({
     format: combine(
         timestamp({
         format: 'YYYY-MM-DD HH:mm:ss'
-        })
+        }),
+        logFormat
     ),
     transports: [
         new transports.Console({
             level: 'info',  
-            format: combine(logFormat)
         }),
 
         // File transport with log rotation
@@ -34,7 +34,7 @@ const logger = createLogger({
             maxSize: '10m',
             maxFiles: '14d',                   // Keep logs for 14 days
             level: 'info',
-            format: combine(timestamp(), json())
+            format: logFormat
         }),
     ]
 });
