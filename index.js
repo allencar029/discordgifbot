@@ -12,10 +12,6 @@ const client = new Client({
     ]
 }) //discord expects you to give permissions to the client bot. 
 
-//below is an event listener, the client listens for the ready event 
-//node.js uses an event driven architecture, making it possible for code to be executed when a specific even occurs
-// the client class for discord already has a bunch of events associated with it so all you have to do is type in a string instead of having a
-// individual event file and dynamically retrieving that even file and its functionality in your index file. 
 client.on("ready", () => {
     logger.info(`Logged in as ${client.user.tag}!`)
 })
