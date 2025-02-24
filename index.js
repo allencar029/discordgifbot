@@ -18,8 +18,6 @@ const client = new Client({
 // individual event file and dynamically retrieving that even file and its functionality in your index file. 
 client.on("ready", () => {
     logger.info(`Logged in as ${client.user.tag}!`)
-    client.emit('error', new Error('Simulated error for testing.'))
-
 })
 
 client.on("messageCreate", async (message) => {
